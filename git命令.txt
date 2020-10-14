@@ -1,0 +1,98 @@
+创建账户:git config --global user.name "tomcat"
+设置邮箱:git config --global user.email 2889567356@qq.com
+检查配置:git config --list 
+删除账户:git config --global --unset user.name
+	git config --global --unset user.email
+
+
+git 操作基本流程
+	创建工作目录
+	git add ./
+	对工作目录进行修改
+	git commit -m "注释内容"
+linux命令:
+	echo “内容”> 文件名   创建文件
+	vim  按i 修改文件 :wq保存 :q!强制保存
+	cat 文件名   查看文件内容
+git 基础命令
+	git ls-files -s 查询缓存区
+	
+	git cat-file -t 哈希值  查看哈希值对应的对象
+	            -p		查看内容
+	git hash-object -w 路径  查看对应文件的哈希值
+git 高层命令 (CRUD)
+	git init                                 初始化仓库
+	git status                             查看当前文件状态
+	git diff                                 查看哪些修改还没有暂存
+	git diff --staged                  查看哪些被暂存过还没被提交
+	git  add ./                            将修改添加到暂存区
+	git commit                          注释多用这个
+	git commit -a 
+	git commit -m 注释             将暂存区提交到版本库 加上-a跳过暂存区
+	git log --pretty=oneline      查看历史记录 简写：git log --oneline
+	git reflog		            查看所有历史记录
+	git log -g 	            查看所有历史记录所有信息
+	git rm 文件名                       删除 直接将删除文件放入暂存区
+	git mv 原文件名 文件名        将工作目录中的 文件进行重命名 再将修改添加到暂存区
+git 分支操作
+	注意:分支切换前必须提交
+	git branch                            显示分支列表
+	git branch 分支名	            创建分支
+	git checkout 分支名	            切换分支
+	git checkout -b分支名          创建并切换
+	git log --oneline --decorate --graph --all 查看所有分支历史记录
+	git branch -D 分支名            强制删除分支
+		-v                         查看每一个分支的最后一次提交
+	git branch 分支名 commitHash 新建一个分支并且指向对应的提交对象
+	git merge 分支名                  快进 合并分支
+存储:
+                git stash                                将未完成的工作存储到一个栈上
+	git stash list	             查看有没有存储
+	//git stash apply 栈名              应用栈顶的元素
+	//git stash drop 栈名               从栈顶移除该元素
+	git statsh pop	             来应用存储并移除元素		
+换别名:
+	git config --global alias.命令名 " 原命令 "         更改命令名
+撤回/重置:
+	git checkout -- 文件名           将在工作目录中对文件的修改撤销
+	git  reset HEAD 文件名          将文件从暂存区中撤回到工作目录
+	git commit --amend              将暂存区中的文件提交，如果提交后发现忘记了暂存某些需要的修改，先使用git add暂存
+	//git reset --soft HEAD~           将HEAD的指针指向上一次提交
+	//git reset --soft 哈希值	将HEAD的指针指向该哈希值的提交
+	//git reset --mixed HEAD~ 	  将HEAD的指针指向上一次提交 同时撤销缓存
+	//git reset --hard HEAD~	 将HEAD的指针指向上一次提交 同时撤销缓存 覆盖工作目录 有丢失数据的风险
+tag标签:	
+	git tag                    		列出标签		
+	git tag 标签 哈希值		创建标签
+	git show 标签		查看特定标签
+	git tag -d 标签		删除标签
+			
+	git checkout -b 标签                     检出标签
+远程仓库操作:
+	1.项目经理在github上操作初始化一个仓库
+	2.项目经理创建本地仓库:
+		git remote 别名 仓库地址(url)
+		git init ; 将源码复制进来
+		修改用户名 修改邮箱
+		git add 
+		git commit
+	3项目经理推送本地仓库到远程仓库
+		清理windows凭据
+		git push 别名 分支	(然后输入用户名和密码)
+	4项目经理在github上邀请成员,成员接收邀请
+	5.成员克隆远程仓库
+		git clone 仓库地址(在本地生成.git文件 默认为远程仓库配了别名 origin)
+		git checkout -b dev origin/dev	根据远程的dev生成本地的dev
+		git pull origin  dev 将远程的分支拉过来和当前分支合并
+	6.成员做出贡献
+		修改源码文件
+		git add
+		git commit 
+		git push 别名 分支 (然后输入用户名和密码)
+	7.项目经理更新修改
+		git fetch 别名 (将修改同步到远程跟踪分支上)
+		git merge 远程跟踪分支 （合并远程跟踪分支）
+
+
+
+
