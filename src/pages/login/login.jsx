@@ -1,25 +1,34 @@
 import React,{Component} from "react";
 import "./login.less";
-import logo from "./imgs/oqn5.png"
-import { Form, Input, Button} from 'antd';
+import logo from "./imgs/logo.jpg";
+import {Form, Input, Button, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {reqLoing} from "../../api";
 /*
 *
 * 后台管理的路由组件
 * */
 
 //表单组件验证
-const NormalLoginForm = () => {
+const NormalLoginForm = (porps) => {
 
-    const onFinish = (err,values) => {
+    const onFinish = async(values) => {
         //统一验证 提交ajax请求
-        if(!err){
-            console.log("ajax")
-        }else{
-            console.log("失败")
-        }
+        const {username,password}=values;
+        //发送请求并获得请求数据
+        const result = await reqLoing(username, password);
+        if(result.status===1){
+            //登录成功
+            message.success("登录成功")
+            //一次跳转无法返回,允许返回的为push
+          porps.props.history.replace("/");
 
+        }else{
+            //登录失败提示错误信息
+            message.error(result.msg)
+        }
     };
+
     return (
         <Form name="normal_login" className="login-form" initialValues={{remember: true}} onFinish={onFinish}>
             {/*声明式验证*/}
@@ -58,7 +67,7 @@ const NormalLoginForm = () => {
     )
 }
 
-
+//登录页面组件
 export default class Login extends Component {
 
     render() {
@@ -71,7 +80,7 @@ export default class Login extends Component {
                     </header>
                     <section className="login-content">
                         <h2>用户登录</h2>
-                        <NormalLoginForm></NormalLoginForm>
+                        <NormalLoginForm props={this.props}></NormalLoginForm>
                     </section>
                 </div>
             )
