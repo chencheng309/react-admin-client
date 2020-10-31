@@ -1,4 +1,4 @@
-import React, {Component,useState} from "react";
+import React, {Component} from "react";
 import { Card , Button , Table , Modal  , Form, Input}from "antd";
 import {formateDate} from "../../utils/dateUtils";
 /*
@@ -50,17 +50,11 @@ export default class User extends Component {
         e.user.key=j+1;
         let result=this.state.data;
         result.push(e.user)
-
         this.setState({
-            visible: false,
-            data:result
+            visible:false,
+            data: [...result]
         });
-      this.close(result)
     };
-
-    close = () => {
-        this.props.history.replace("/role")
-    }
 
     //关闭创建弹窗
     handleCancel = e => {
@@ -78,7 +72,6 @@ export default class User extends Component {
                 <Table
                     columns={columns}
                     dataSource={this.state.data}
-
                 />
                 <Modal
                     title="创建用户"

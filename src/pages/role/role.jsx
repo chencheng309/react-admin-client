@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Card, Button, Table, Modal , Form, Input, InputNumber,} from 'antd';
+import {Card, Button, Table, Modal , Form, Input} from 'antd';
 import {formateDate} from "../../utils/dateUtils";
 /*
 * 角色路由
@@ -51,10 +51,10 @@ export default class Role extends Component {
     handleOk = e => {
         let result=this.state.data;
         result.push(e.user)
-        this.setState({
-            visible: false,
-            data:result
-        });
+        this.setState(state => ({
+              visible:false,
+              data:[...result]
+        }));
     };
     handleCancel = e => {
         this.setState({
