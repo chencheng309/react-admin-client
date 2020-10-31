@@ -1,0 +1,63 @@
+npm问题: 		最好不要和cnpm混合使用
+		清除缓存或者重启重新安装依赖  清除缓存命令 npm cache clean -f
+axios跨域问题: 
+		在配置里添加 "proxy":"跨域的地址"
+
+服务器设置跨域请求问题: 
+		res.setHeader("Access-Control-Allow-Origin","*");
+    		res.setHeader("Access-Control-Allow-Headers","*");
+		res.header('Access-Control-Allow-Methods', '*');
+		res.header('Content-Type', 'application/json;charset=utf-8');
+
+服务器拿到请求体数据问题:
+		app.use(express.json())
+		app.use(express.urlencoded({ extended: true }))
+		console.log(req.body)
+   		res.json(req.body) //将数据转换为json并返回给请求页面
+mongoose操作返回对象问题: 
+		使用model的 .cursor和 .next 方法
+		var cursor = UserModel.find({username:requstBody.username,password:requstBody.password}).cursor();
+     		cursor.next(callback)
+porps传递问题:
+		使用import { withRouter } from 'react-router-dom' 导入withRouter
+		然后导出包装后的组件export default withRouter(APP);
+		
+维持登录问题：	
+		创建一个工具类memory将用户信息存入
+		export default {
+   		       user:{}
+		}
+		安装store插件引入store
+		配置storageUtils.js文件
+		export default {
+
+   		 	saveUser(user){
+				store.set("用户名称" , 用户信息) 
+    			},
+    			getUser(){
+			            return store.get("用户名称" || {})
+    			},
+    			removeUser(){
+				store.remove("用户名称")
+    			}
+		}
+页面跳转方法:
+		props.history.replace("/",state)    不可返回
+		props.history.push("/",state)	可返回
+img图片引入问题:
+		用import引入组件的形式引入:import tianqi from "./tianqi.jpg";
+导航菜单自动选择问题:
+		const path=this. props.location.pathname;
+		将Menu的属性更换为selectedKeys={[path]}
+React使用正则模糊搜索问题:
+		 //正则匹配
+       		 const req = eval(`/${searchName}/`)
+		 const result=[];
+		 data.forEach(item => {
+                   		 if(req.test(item)){
+                       		 result.push(item);} }
+
+
+
+
+
