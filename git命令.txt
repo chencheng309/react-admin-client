@@ -71,7 +71,7 @@ tag标签:
 远程仓库操作:
 	1.项目经理在github上操作初始化一个仓库
 	2.项目经理创建本地仓库:
-		git remote 别名 仓库地址(url)
+		git remote add 别名 仓库地址(url)
 		git init ; 将源码复制进来
 		修改用户名 修改邮箱
 		git add 

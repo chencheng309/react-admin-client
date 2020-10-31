@@ -146,7 +146,8 @@ export default class ProductHome extends Component {
             return "";
         }
         this.setState({
-            data:result
+            data:result,
+            redata:result
         })
     }
     //搜索
@@ -155,7 +156,6 @@ export default class ProductHome extends Component {
         //正则匹配
         const req = eval(`/${searchName}/`)
         const result=[];
-        console.log(searchName,searchType)
         if(searchName){
             if(searchType==="0"){
                 data.forEach(item => {
