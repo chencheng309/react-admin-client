@@ -11,17 +11,15 @@ export default class Bar extends Component {
         datakucun:[6, 10, 25, 20, 15, 10]
     }
 
-    updata = () => {
+    update = () => {
         this.setState(state => ({
             dataxiaoliang:state.dataxiaoliang.map(xl => xl+1),
             datakucun:state.datakucun.map(kc => kc-1)
         }))
     }
-    getOption = (dataxiaoliang,datakucun) => {
+    getOption = () => {
         return  {
-            title: {
-                text: 'ECharts 入门示例'
-            },
+
             tooltip: {},
             legend: {
                 data:['销量','库存']
@@ -34,11 +32,11 @@ export default class Bar extends Component {
             series: [{
                 name: '销量',
                 type: 'bar',
-                data: dataxiaoliang
+                data: this.state.dataxiaoliang
             },{
                 name: '库存',
                 type: 'bar',
-                data: datakucun
+                data: this.state.datakucun
             }]
         }
     }
@@ -50,7 +48,7 @@ export default class Bar extends Component {
                     <Button type="primary" onClick={this.update}>更新</Button>
                 </Card>
                 <Card title="柱状图">
-                    <ReactEcharts option={this.getOption(dataxiaoliang,datakucun)} style = {{height:"500px"}}/>
+                    <ReactEcharts option={this.getOption()} style = {{height:"500px"}}/>
                 </Card>
             </div>
         )

@@ -30,13 +30,13 @@ export default class Admin extends Component{
             return <Redirect to="/login"/>
         }
         return (
-            <Layout style={{height:"100%"}}>
+            <Layout style={{height:1000}}>
                 <Sider>
                     <LeftNav />
                 </Sider>
                 <Layout>
                     <Header></Header>
-                    <Content style={{margin:20,background:"#fff"}}>
+                    <Content style={{margin:20,background:"#fff",height:"100%"}}>
                         <Switch>
                             <Route path="/home" component={Home}/>
                             <Route path="/category" component={Category}/>
