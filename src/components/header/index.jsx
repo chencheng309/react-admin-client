@@ -70,12 +70,12 @@ class Index extends Component {
 
 
     render() {
-        const username = memoryUtils.user.username;
+        // const username = memoryUtils.user.username;
         const title=this.getTitle();
         return (
             <div className="header">
                 <div className="header-top">
-                    <span>欢迎，{username}</span>
+                    <span>欢迎，admin</span>
                     <a onClick={this.logout}>退出</a>
                 </div>
                 <div className="header-bottom">

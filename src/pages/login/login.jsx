@@ -16,25 +16,25 @@ import storageUtils from "../../utils/storageUtils";
 const NormalLoginForm = (porps) => {
 
     const onFinish = async(values) => {
-        //统一验证 提交ajax请求
-        const {username,password}=values;
-        //发送请求并获得请求数据
-        const result = await reqLoing(username, password);
-
-        if(result.status===1){
-            //登录成功
-            message.success("登录成功")
-            //将用户数据保存到memoryUtils中
-            const user=result.data;
-            memoryUtils.user=user;//保存到内存中
-            storageUtils.saveUser(user);//保存到Local中
-            //一次跳转无法返回,允许返回的为push
-          porps.props.history.replace("/");
-
-        }else{
-            //登录失败提示错误信息
-            message.error(result.msg)
-        }
+        // //统一验证 提交ajax请求
+        // const {username,password}=values;
+        // //发送请求并获得请求数据
+        // const result = await reqLoing(username, password);
+        //
+        // if(result.status===1){
+        //     //登录成功
+        //     message.success("登录成功")
+        //     //将用户数据保存到memoryUtils中
+        //     const user=result.data;
+        //     memoryUtils.user=user;//保存到内存中
+        //     storageUtils.saveUser(user);//保存到Local中
+        //     //一次跳转无法返回,允许返回的为push
+           porps.props.history.replace("/");
+        //
+        // }else{
+        //     //登录失败提示错误信息
+        //     message.error(result.msg)
+        // }
     };
 
     return (
